@@ -8,14 +8,19 @@
 int main()
 {
     int fd;
-
-    char *myfifo = "/ise /Desktop/tmp";
+    char *myfifo = "/Users/siddharthareddy/temp/test";  // Correct absolute path
     char buf[MAX_BUF];
 
-    fd = open(myfifo, O_RDONLY);
-    read(fd, buf, MAX_BUF);
-    
-    printf("Reader process has read : %s\n", buf);
-    close(fd);
+    fd = open(myfifo, O_RDONLY);  // Open FIFO for reading
+    read(fd, buf, MAX_BUF);  // Read data from FIFO
+    printf("Reader process has read: %s\n", buf);
+    close(fd);  // Close the FIFO file descriptor
+
+    // Optionally, delete the FIFO if you don't need it anymore
+    unlink(myfifo);
+
     return 0;
 }
+
+
+//READER
